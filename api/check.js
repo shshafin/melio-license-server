@@ -1,6 +1,11 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import { kv } from '@vercel/kv';
+const fs = require('node:fs');
+const path = require('node:path');
+const { Redis } = require('@upstash/redis');
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
 
 function loadDb(dbPath) {
   const raw = fs.readFileSync(dbPath, 'utf-8');
@@ -10,7 +15,7 @@ function loadDb(dbPath) {
   return parsed;
 }
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   try {
     const key = String((req.query && req.query.key) || '').trim();
     const hwid = String((req.query && req.query.hwid) || '').trim();
@@ -19,19 +24,19 @@ export default async function handler(req, res) {
     if (!hwid) return res.status(400).json({ valid: false, message: 'Missing hwid' });
 
     // Key list + revoke control still come from licenses.json
-    const dbPath = path.join(process.cwd(), 'license-server', 'licenses.json');
+    const dbPath = path.join(process.cwd(), 'licenses.json');
     const db = loadDb(dbPath);
     const lic = db.licenses[key];
 
     if (!lic) return res.status(200).json({ valid: false, message: 'Invalid license' });
     if (lic.active === false) return res.status(200).json({ valid: false, message: 'License revoked' });
 
-    // HWID binding is persisted in Vercel KV
+    // HWID binding is persisted in Upstash Redis (Vercel integration)
     const kvKey = `hwid:${key}`;
-    const storedHwid = await kv.get(kvKey);
+    const storedHwid = await redis.get(kvKey);
 
     if (!storedHwid) {
-      await kv.set(kvKey, hwid);
+      await redis.set(kvKey, hwid);
       return res.status(200).json({ valid: true, message: 'Activated' });
     }
 
@@ -43,5 +48,5 @@ export default async function handler(req, res) {
   } catch {
     return res.status(500).json({ valid: false, message: 'Server error' });
   }
-}
+};
 

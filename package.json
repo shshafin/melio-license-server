@@ -1,10 +1,8 @@
 {
-  "name": "license-server",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "melio-license-server",
+  "version": "1.0.0",
   "dependencies": {
-    "@vercel/kv": "^1.0.0"
+    "@upstash/redis": "^1.28.0"
   }
 }
 
