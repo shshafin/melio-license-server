@@ -1,8 +1,6 @@
 {
   "version": 2,
-  "functions": {
-    "api/check.js": { "runtime": "@vercel/node" }
-  },
-  "rewrites": [{ "source": "/check", "destination": "/api/check" }]
+  "rewrites": [
+    { "source": "/check", "destination": "/api/check" }
+  ]
 }
-
