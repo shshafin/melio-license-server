@@ -1,0 +1,10 @@
+{
+  "licenses": {
+    "CLIENT_KEY_001": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 1"
+    }
+  }
+}
+
