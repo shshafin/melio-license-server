@@ -3,8 +3,32 @@
     "CLIENT_KEY_001": {
       "active": true,
       "hwid": null,
+      "note": "Shafin - Developer"
+    },
+    "MELIO-2026-ALPHA": {
+      "active": true,
+      "hwid": null,
       "note": "Client 1"
+    },
+    "MELIO-2026-BETA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 2"
+    },
+    "MELIO-2026-GAMMA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 3"
+    },
+    "MELIO-2026-DELTA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 4"
+    },
+    "MELIO-2026-OMEGA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 5"
     }
   }
 }
-
