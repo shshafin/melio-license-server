@@ -29,6 +29,31 @@
       "active": true,
       "hwid": null,
       "note": "Client 5"
+    },
+    "MELIO-2026-SIGMA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 6"
+    },
+    "MELIO-2026-THETA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 7"
+    },
+    "MELIO-2026-KAPPA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 8"
+    },
+    "MELIO-2026-LAMBDA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 9"
+    },
+    "MELIO-2026-ZETA": {
+      "active": true,
+      "hwid": null,
+      "note": "Client 10"
     }
   }
 }
